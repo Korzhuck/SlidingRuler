@@ -9,7 +9,7 @@ import SwiftUI
 
 public struct BottomedSlindingRulerStyle: SlidingRulerStyle {
     public var cursorAlignment: VerticalAlignment = .bottom
-
+    public var cellWidth: CGFloat { 60 }
     public init() {}
     
     public func makeCellBody(configuration: SlidingRulerStyleConfiguation) -> some FractionableView {

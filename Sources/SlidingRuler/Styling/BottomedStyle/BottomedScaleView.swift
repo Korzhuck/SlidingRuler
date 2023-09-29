@@ -10,7 +10,7 @@ import SwiftUI
 struct BottomedScaleView: ScaleView {
     struct ScaleShape: Shape {
         fileprivate var unitMarkSize: CGSize { .init(width: 1.0, height: 20.0)}
-        fileprivate var halfMarkSize: CGSize { .init(width: 1.0, height: 20.0) }
+        fileprivate var halfMarkSize: CGSize { .init(width: 1.0, height: 11.0) }
         fileprivate var fractionMarkSize: CGSize { .init(width: 1.0, height: 11.0)}
 
         func path(in rect: CGRect) -> Path {
@@ -18,14 +18,14 @@ struct BottomedScaleView: ScaleView {
             let centerY = rect.height - unitMarkSize.height / 2
             var p = Path()
 
-            p.addRoundedRect(in: unitRect(x: centerX, y: centerY), cornerSize: .init(square: unitMarkSize.width/2))
-            p.addRoundedRect(in: halfRect(x: 0, y: rect.height - halfMarkSize.height/2), cornerSize: .init(square: halfMarkSize.width/2))
-            p.addRoundedRect(in: halfRect(x: rect.maxX, y: rect.height - halfMarkSize.height/2), cornerSize: .init(square: halfMarkSize.width/2))
+            p.addRect(unitRect(x: centerX, y: centerY))
+            p.addRect(halfRect(x: 0, y: rect.height - halfMarkSize.height/2))
+            p.addRect(halfRect(x: rect.maxX, y: rect.height - halfMarkSize.height/2))
 
-            let tenth = rect.width / 10
-            for i in 1...5 {
-                p.addRoundedRect(in: tenthRect(x: centerX + CGFloat(i) * tenth, y: rect.height - fractionMarkSize.height/2), cornerSize: .init(square: fractionMarkSize.width/2))
-                p.addRoundedRect(in: tenthRect(x: centerX - CGFloat(i) * tenth, y: rect.height - fractionMarkSize.height/2), cornerSize: .init(square: fractionMarkSize.width/2))
+            let tenth = rect.width / 6
+            for i in 1...3 {
+                p.addRect(tenthRect(x: centerX + CGFloat(i) * tenth, y: rect.height - fractionMarkSize.height/2))
+                p.addRect(tenthRect(x: centerX - CGFloat(i) * tenth, y: rect.height - fractionMarkSize.height/2))
             }
 
             return p
@@ -53,7 +53,7 @@ struct BottomedScaleView: ScaleView {
 struct BottomedScaleView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            BottomedScaleView(width: 120)
+            BottomedScaleView(width: 60)
         }
         .previewLayout(.sizeThatFits)
     }

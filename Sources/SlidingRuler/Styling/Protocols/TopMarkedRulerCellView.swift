@@ -12,7 +12,13 @@ extension TopMarkedRulerCellView {
     var markColor: Color {
         bounds.contains(mark) ? .init(.label) : .init(.tertiaryLabel)
     }
-    var displayMark: String { numberFormatter?.string(for: mark) ?? "\(mark.approximated())" }
+    var displayMark: String {
+        if (bounds.contains(mark)) {
+            return numberFormatter?.string(for: mark) ?? "\(mark.approximated())"
+        } else {
+            return ""
+        }
+    }
 
     var body: some View {
         VStack {
