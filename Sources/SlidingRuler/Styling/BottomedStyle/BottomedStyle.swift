@@ -8,7 +8,7 @@
 import SwiftUI
 
 public struct BottomedSlindingRulerStyle: SlidingRulerStyle {
-    public var cursorAlignment: VerticalAlignment = .top
+    public var cursorAlignment: VerticalAlignment = .bottom
 
     public init() {}
     
@@ -21,6 +21,6 @@ public struct BottomedSlindingRulerStyle: SlidingRulerStyle {
     }
 
     public func makeCursorBody() -> some View {
-        NativeCursorBody()
+        TriangleCursorBody()
     }
 }

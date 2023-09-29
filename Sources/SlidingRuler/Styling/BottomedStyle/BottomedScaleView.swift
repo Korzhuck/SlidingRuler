@@ -10,7 +10,7 @@ import SwiftUI
 struct BottomedScaleView: ScaleView {
     struct ScaleShape: Shape {
         fileprivate var unitMarkSize: CGSize { .init(width: 1.0, height: 20.0)}
-        fileprivate var halfMarkSize: CGSize { .init(width: 1.0, height: 11.0) }
+        fileprivate var halfMarkSize: CGSize { .init(width: 1.0, height: 20.0) }
         fileprivate var fractionMarkSize: CGSize { .init(width: 1.0, height: 11.0)}
 
         func path(in rect: CGRect) -> Path {
@@ -23,7 +23,7 @@ struct BottomedScaleView: ScaleView {
             p.addRoundedRect(in: halfRect(x: rect.maxX, y: rect.height - halfMarkSize.height/2), cornerSize: .init(square: halfMarkSize.width/2))
 
             let tenth = rect.width / 10
-            for i in 1...4 {
+            for i in 1...5 {
                 p.addRoundedRect(in: tenthRect(x: centerX + CGFloat(i) * tenth, y: rect.height - fractionMarkSize.height/2), cornerSize: .init(square: fractionMarkSize.width/2))
                 p.addRoundedRect(in: tenthRect(x: centerX - CGFloat(i) * tenth, y: rect.height - fractionMarkSize.height/2), cornerSize: .init(square: fractionMarkSize.width/2))
             }
