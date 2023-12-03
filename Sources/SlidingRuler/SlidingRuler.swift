@@ -330,15 +330,13 @@ extension SlidingRuler {
 
     /// Returns the nearest value to snap on based on the `snap` property.
     private func nearestSnapValue(_ value: CGFloat) -> CGFloat {
-        guard snap != .none else { return value }
-
         let t: CGFloat
 
         switch snap {
+        case .none: return value
         case .unit: t = step
         case .half: t = step / 2
-        case .fraction: t = step / CGFloat(fractions)
-        default: fatalError()
+        case .fraction(let fractions): t = step / CGFloat(fractions ?? self.fractions)
         }
 
         let lower = (value / t).rounded(.down) * t
