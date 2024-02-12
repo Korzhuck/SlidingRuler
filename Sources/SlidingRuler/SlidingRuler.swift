@@ -56,7 +56,7 @@ public struct SlidingRuler<V>: View where V: BinaryFloatingPoint, V.Stride: Bina
     /// Edit changed callback.
     private let editingChangedCallback: (Bool) -> ()
     /// Number formatter for ruler's marks.
-    private let formatter: NumberFormatter?
+    @State private var formatter: NumberFormatter?
 
     /// Width of the control, retrieved through preference key.
     @State private var controlWidth: CGFloat?
